@@ -1,0 +1,93 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // 0. Global Safety Net
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // --- Helpers ---
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    // --- Entity Validations ---
+    function isValidRating(data) {
+      return data.keys().hasAll(['packageId', 'userId', 'userName', 'rating', 'createdAt']) &&
+             data.packageId is string && data.packageId.size() <= 100 &&
+             data.userId == request.auth.uid &&
+             data.userName is string && data.userName.size() <= 100 &&
+             data.rating is number && data.rating >= 1 && data.rating <= 5 &&
+             data.createdAt == request.time &&
+             // Ensure no shadow fields are injected
+             data.keys().size() <= 6 &&
+             (!('comment' in data) || (data.comment is string && data.comment.size() <= 1000));
+    }
+
+    function isValidBooking(data) {
+      return data.keys().hasAll(['userId', 'name', 'email', 'phone', 'packageId', 'date', 'travelers', 'status', 'createdAt']) &&
+             data.userId == request.auth.uid &&
+             data.name is string && data.name.size() <= 128 &&
+             data.email is string && data.email.size() <= 128 &&
+             data.phone is string && data.phone.size() <= 20 &&
+             data.packageId is string && data.packageId.size() <= 100 &&
+             data.date is string && data.date.size() <= 20 &&
+             data.travelers is string && data.travelers.size() <= 20 &&
+             data.status in ['pending', 'confirmed', 'cancelled'] &&
+             data.createdAt == request.time &&
+             // Optional fields
+             (!('packageName' in data) || (data.packageName is string && data.packageName.size() <= 200)) &&
+             (!('message' in data) || (data.message is string && data.message.size() <= 2000)) &&
+             data.keys().size() <= 11;
+    }
+
+    // --- Collection Rules ---
+    match /ratings/{ratingId} {
+      // Secure list queries: prevent unauthorized scraping if needed, but reviews are public.
+      // However, we still validate the ID if accessed individually.
+      allow list: if true; 
+      allow get: if isValidId(ratingId);
+      
+      // Create: user must be signed in and data must be valid.
+      allow create: if isSignedIn() && isValidId(ratingId) && isValidRating(incoming());
+      
+      // Update: forbidden to prevent review manipulation.
+      allow update: if false;
+
+      // Delete: only the owner can delete their review.
+      allow delete: if isOwner(existing().userId);
+    }
+
+    match /bookings/{bookingId} {
+      // Users can only see their own bookings
+      allow list: if isSignedIn() && resource.data.userId == request.auth.uid;
+      allow get: if isOwner(existing().userId) && isValidId(bookingId);
+
+      // Create: user must be signed in and its their own booking
+      allow create: if isSignedIn() && isValidId(bookingId) && isValidBooking(incoming());
+
+      // Update: only allow cancelling by the user, or other state changes by admin
+      allow update: if isOwner(existing().userId) && 
+                      incoming().diff(existing()).affectedKeys().hasOnly(['status']) &&
+                      incoming().status == 'cancelled';
+      
+      allow delete: if false; // Prefer cancelling over deleting
+    }
+  }
+}

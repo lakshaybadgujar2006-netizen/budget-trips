@@ -1,0 +1,47 @@
+{
+  "entities": {
+    "ratings": {
+      "title": "Rating",
+      "description": "User ratings and reviews for tour packages",
+      "type": "object",
+      "properties": {
+        "packageId": { "type": "string", "description": "The ID of the tour package being rated" },
+        "userId": { "type": "string", "description": "The unique identifier of the user who submitted the rating" },
+        "userName": { "type": "string", "description": "The name of the user who submitted the rating" },
+        "rating": { "type": "number", "description": "The rating value from 1 to 5" },
+        "comment": { "type": "string", "description": "An optional text review from the user" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "The timestamp when the rating was created" }
+      },
+      "required": ["packageId", "userId", "userName", "rating", "createdAt"]
+    },
+    "bookings": {
+      "title": "Booking",
+      "description": "User trip bookings and custom itinerary requests",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "The unique identifier of the user who booked" },
+        "name": { "type": "string", "description": "Full name of the traveler" },
+        "email": { "type": "string", "description": "Email address for contact" },
+        "phone": { "type": "string", "description": "Phone number for contact" },
+        "packageId": { "type": "string", "description": "The ID of the tour package" },
+        "packageName": { "type": "string", "description": "Display name of the package" },
+        "date": { "type": "string", "format": "date", "description": "Travel date" },
+        "travelers": { "type": "string", "description": "Number of travelers" },
+        "message": { "type": "string", "description": "Optional notes or requirements" },
+        "status": { "type": "string", "enum": ["pending", "confirmed", "cancelled"], "description": "Current status of the booking" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Timestamp of booking creation" }
+      },
+      "required": ["userId", "name", "email", "phone", "packageId", "date", "travelers", "status", "createdAt"]
+    }
+  },
+  "firestore": {
+    "ratings": {
+      "schema": "ratings",
+      "description": "Collection of all user ratings and reviews"
+    },
+    "bookings": {
+      "schema": "bookings",
+      "description": "Collection of all user bookings"
+    }
+  }
+}
