@@ -54,7 +54,7 @@ export default function Auth() {
             <div className="p-3 bg-emerald-600 rounded-2xl shadow-lg shadow-emerald-900/20">
               <Mountain className="h-8 w-8 text-white" />
             </div>
-            <span className="text-2xl font-black text-gray-900 tracking-tighter italic">HimalayanHaven.</span>
+            <span className="text-2xl font-black text-gray-900 tracking-tighter italic">Budget Trip.</span>
           </div>
           <h1 className="text-3xl font-bold text-gray-900">
             {isLogin ? 'Welcome Back!' : 'Join the Adventure'}

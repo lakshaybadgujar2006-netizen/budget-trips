@@ -76,7 +76,7 @@ export function Footer() {
               <span className="text-xl font-bold font-sans text-white tracking-tight uppercase">Budget <span className="text-emerald-600">Trips</span></span>
             </NavLink>
             <p className="text-gray-400 leading-relaxed">
-              Crafting unforgettable memories in the heart of the Himalayas. Discover the serene beauty of India's hill stations with experts.
+              Crafting unforgettable budget travel experiences across India. Discover breathtaking destinations with the best value tour packages.
             </p>
             <div className="flex space-x-4">
               <a href="#" className="hover:text-emerald-500 transition-colors"><Facebook className="h-5 w-5" /></a>

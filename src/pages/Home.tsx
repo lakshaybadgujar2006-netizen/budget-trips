@@ -34,7 +34,7 @@ export default function Home() {
               Escape to the <span className="italic font-serif font-light">Serenity</span> of the Hills
             </h1>
             <p className="text-lg md:text-xl text-gray-200 mb-10 max-w-2xl mx-auto font-medium leading-relaxed">
-              Curated luxury tours to India's most breathtaking hill stations. Experience nature like never before.
+              Curated budget tours to India's most breathtaking destinations. Experience nature like never before.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <NavLink
@@ -245,7 +245,7 @@ export default function Home() {
             </svg>
           </div>
           <div className="relative z-10">
-            <h2 className="text-4xl md:text-6xl font-bold mb-8 tracking-tight">Your Himalayan adventure <br className="hidden md:block" /> starts here.</h2>
+            <h2 className="text-4xl md:text-6xl font-bold mb-8 tracking-tight">Your Budget Trip <br className="hidden md:block" /> starts here.</h2>
             <p className="text-lg md:text-xl text-emerald-50 mb-12 max-w-2xl mx-auto opacity-90">
               Join thousands of happy travelers and discover the magic of India's hill stations.
             </p>

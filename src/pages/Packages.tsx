@@ -10,7 +10,7 @@ export default function TourPackages() {
   const [expandedPackage, setExpandedPackage] = useState<string | null>(null);
   const [expandedDetails, setExpandedDetails] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
-  const [activeCategory, setActiveCategory] = useState('All');
+  const [activeCategory, setActiveCategory] = useState('Budget');
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 50000]);
 
   const filteredPackages = TOUR_PACKAGES.filter(pkg => {
@@ -28,8 +28,8 @@ export default function TourPackages() {
           <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-50 rounded-full blur-3xl opacity-50 -ml-32 -mb-32"></div>
           
           <SectionHeader
-            title="Premium Tour Packages"
-            subtitle="Carefully crafted itineraries for solo travelers, families, and adventure seekers."
+            title="Budget Trips"
+            subtitle="Explore breathtaking destinations across India without breaking the bank. Great value, unforgettable memories."
             className="mb-0 text-left relative z-10"
           />
           
@@ -38,7 +38,7 @@ export default function TourPackages() {
             <div className="relative group/search">
               <input 
                 type="text" 
-                placeholder="Search by location or trip..."
+                placeholder="Search affordable trips & destinations..."
                 className="w-full lg:w-[400px] px-8 py-5 bg-gray-50/50 rounded-3xl border-2 border-transparent shadow-inner focus:outline-none focus:ring-4 focus:ring-emerald-500/10 focus:border-emerald-500 focus:bg-white transition-all pl-16 text-lg font-medium placeholder:text-gray-400"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
