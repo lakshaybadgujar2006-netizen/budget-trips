@@ -195,6 +195,84 @@ export const DESTINATIONS: Destination[] = [
       'https://images.unsplash.com/photo-1590733473918-c51727448830?q=80&w=800&auto=format&fit=crop'
     ],
     highlights: ['Promenade Beach', 'Auroville', 'French Quarter', 'Paradise Beach']
+  },
+  {
+    id: 'alleppey',
+    name: 'Alleppey',
+    state: 'Kerala',
+    description: 'The Venice of the East, famous for its calm backwaters, traditional houseboats, and lush paddy fields.',
+    image: 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1200&auto=format&fit=crop',
+    gallery: [
+      'https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=800&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1593693397690-362cb9666fc2?q=80&w=800&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1506461883276-594a12b11cf3?q=80&w=800&auto=format&fit=crop'
+    ],
+    highlights: ['Backwater Cruise', 'Alappuzha Beach', 'Marari Beach', 'Punnamada Lake']
+  },
+  {
+    id: 'spiti',
+    name: 'Spiti Valley',
+    state: 'Himachal Pradesh',
+    description: 'A cold desert mountain valley high in the Himalayas, known for its moon-like landscapes and ancient monasteries.',
+    image: 'https://images.unsplash.com/photo-1510253685831-2ff9721e3d74?q=80&w=1200&auto=format&fit=crop',
+    gallery: [
+      'https://images.unsplash.com/photo-1510253685831-2ff9721e3d74?q=80&w=800&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1586326162139-4d641ec9f947?q=80&w=800&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=800&auto=format&fit=crop'
+    ],
+    highlights: ['Key Monastery', 'Chandratal Lake', 'Pin Valley', 'Kazi Village']
+  },
+  {
+    id: 'shillong',
+    name: 'Shillong',
+    state: 'Meghalaya',
+    description: 'The Scotland of the East, Shillong is a hub of natural beauty, rolling hills, and cascading waterfalls.',
+    image: 'https://images.unsplash.com/photo-1544430294-754805826f1c?q=80&w=1200&auto=format&fit=crop',
+    gallery: [
+      'https://images.unsplash.com/photo-1544430294-754805826f1c?q=80&w=800&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1505506874110-6a7a69069a08?q=80&w=800&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1454496522488-7a8e488e8606?q=80&w=800&auto=format&fit=crop'
+    ],
+    highlights: ['Elephant Falls', 'Shillong Peak', 'Umiam Lake', 'Living Root Bridges']
+  },
+  {
+    id: 'ranthambore',
+    name: 'Ranthambore',
+    state: 'Rajasthan',
+    description: 'One of Northern Indias most famous national parks, known as the best place to see tigers in their natural habitat.',
+    image: 'https://images.unsplash.com/photo-1582234052309-823e20092ade?q=80&w=1200&auto=format&fit=crop',
+    gallery: [
+      'https://images.unsplash.com/photo-1582234052309-823e20092ade?q=80&w=800&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1512789677070-6da39634e9ce?q=80&w=800&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1599661046289-e31899539091?q=80&w=800&auto=format&fit=crop'
+    ],
+    highlights: ['Tiger Safari', 'Ranthambore Fort', 'Padam Talao', 'Surwal Lake']
+  },
+  {
+    id: 'coorg',
+    name: 'Coorg',
+    state: 'Karnataka',
+    description: 'The Coffee County of India, Coorg is a mist-covered hill station with sprawling estates and rich biodiversity.',
+    image: 'https://images.unsplash.com/photo-1516738901171-8eb4fc13bd20?q=80&w=1200&auto=format&fit=crop',
+    gallery: [
+      'https://images.unsplash.com/photo-1516738901171-8eb4fc13bd20?q=80&w=800&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1506461883276-594a12b11cf3?q=80&w=800&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1593693397690-362cb9666fc2?q=80&w=800&auto=format&fit=crop'
+    ],
+    highlights: ['Abbey Falls', 'Coffee Plantations', 'Talakaveri', 'Dubare Elephant Camp']
+  },
+  {
+    id: 'kutch',
+    name: 'Rann of Kutch',
+    state: 'Gujarat',
+    description: 'A massive salt desert that transforms into a white wonderland under the moonlight, especially during Rann Utsav.',
+    image: 'https://images.unsplash.com/photo-1524492707947-2f85a6e5a31a?q=80&w=1200&auto=format&fit=crop',
+    gallery: [
+      'https://images.unsplash.com/photo-1524492707947-2f85a6e5a31a?q=80&w=800&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1548013146-72479768bbaa?q=80&w=800&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1585135497273-1a86b09fe707?q=80&w=800&auto=format&fit=crop'
+    ],
+    highlights: ['White Rann', 'Kutch Museum', 'Kala Dungar', 'Mandvi Beach']
   }
 ];
 
@@ -354,6 +432,201 @@ export const TOUR_PACKAGES: TourPackage[] = [
     includes: ['Heritage Villa', 'Auroville Visit', 'French Bakery Tour', 'Beach Transfers'],
     category: 'Family',
     description: 'Enjoy a leisurely vacation in the "Little France" of India, blending serene beaches with spiritual growth.'
+  },
+  {
+    id: 'south-india-temple',
+    title: 'Divine South: Madurai & Rameswaram',
+    destinationId: 'ooty', // Closest match in current destinations or I could add new ones
+    duration: '5 Days, 4 Nights',
+    price: 14500,
+    image: 'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?q=80&w=800&auto=format&fit=crop',
+    rating: 4.9,
+    difficulty: 'Easy',
+    includes: ['Temple Tour', 'Hotel Stay', 'All Meals', 'Local Guide'],
+    category: 'Family',
+    description: 'A spiritual journey through the magnificent Dravidian architecture of Southern India\'s most holy cities.'
+  },
+  {
+    id: 'northeast-explorer',
+    title: 'Northeast Explorer: Shillong & Kaziranga',
+    destinationId: 'darjeeling', // Closest match
+    duration: '6 Days, 5 Nights',
+    price: 22000,
+    image: 'https://images.unsplash.com/photo-1544430294-754805826f1c?q=80&w=800&auto=format&fit=crop',
+    rating: 4.7,
+    difficulty: 'Moderate',
+    includes: ['Wildlife Safari', 'Hotel Stay', 'Guided Tours', 'Transport'],
+    category: 'Adventure',
+    description: 'Discover the "Scotland of the East" and witness the majestic one-horned rhinoceros in its natural habitat.'
+  },
+  {
+    id: 'rajasthan-desert',
+    title: 'Desert Dream: Jaisalmer Safari',
+    destinationId: 'jaipur', // Closest match
+    duration: '4 Days, 3 Nights',
+    price: 11000,
+    image: 'https://images.unsplash.com/photo-1599661046289-e31899539091?q=80&w=800&auto=format&fit=crop',
+    rating: 4.8,
+    difficulty: 'Moderate',
+    includes: ['Camel Safari', 'Luxury Tents', 'Folk Dance', 'Traditional Food'],
+    category: 'Adventure',
+    description: 'Experience the magic of the Thar desert with night camping under the stars and traditional Rajasthani hospitality.'
+  },
+  {
+    id: 'alleppey-houseboat',
+    title: 'Backwater Bliss: Alleppey Houseboat Stay',
+    destinationId: 'alleppey',
+    duration: '3 Days, 2 Nights',
+    price: 13500,
+    image: 'https://images.unsplash.com/photo-1552011614-2792614b87e2?q=80&w=800&auto=format&fit=crop',
+    rating: 4.9,
+    difficulty: 'Easy',
+    includes: ['Private Houseboat', 'Traditional Kerala Meals', 'Village Walk', 'Sunset Cruise'],
+    category: 'Luxury',
+    description: 'Surrender to the serenity of Kerala\'s backwaters in a traditional luxury Kettuvallam houseboat.'
+  },
+  {
+    id: 'spiti-odyssey',
+    title: 'Spiti Odyssey: High Altiude Adventure',
+    destinationId: 'spiti',
+    duration: '8 Days, 7 Nights',
+    price: 38000,
+    image: 'https://images.unsplash.com/photo-1510253685831-2ff9721e3d74?q=80&w=800&auto=format&fit=crop',
+    rating: 5.0,
+    difficulty: 'Challenging',
+    includes: ['4x4 Vehicle', 'Camping Gear', 'Oxygen Support', 'Monastery Guided Tour'],
+    category: 'Adventure',
+    description: 'A life-changing journey through the high passes and ancient Tibetan culture of Spiti Valley.'
+  },
+  {
+    id: 'meghalaya-clouds',
+    title: 'Meghalaya: In the Abode of Clouds',
+    destinationId: 'shillong',
+    duration: '5 Days, 4 Nights',
+    price: 24900,
+    image: 'https://images.unsplash.com/photo-1505506874110-6a7a69069a08?q=80&w=800&auto=format&fit=crop',
+    rating: 4.9,
+    difficulty: 'Moderate',
+    includes: ['Cave Exploration', 'Luxury Resort', 'Local Guide', 'Trekking Charges'],
+    category: 'Adventure',
+    description: 'Witness the living root bridges and the wettest places on earth in the beautiful state of Meghalaya.'
+  },
+  {
+    id: 'ranthambore-wildlife',
+    title: 'Tiger Trails: Ranthambore Safari',
+    destinationId: 'ranthambore',
+    duration: '3 Days, 2 Nights',
+    price: 19500,
+    image: 'https://images.unsplash.com/photo-1550965007-67c29369d76c?q=80&w=800&auto=format&fit=crop',
+    rating: 4.8,
+    difficulty: 'Easy',
+    includes: ['Shared Jeep Safari', 'Luxury Jungle Camp', 'All Meals', 'Naturallist Guide'],
+    category: 'Family',
+    description: 'Embark on a thrilling quest for the Royal Bengal Tiger in the historic hunting grounds of Rajasthani royals.'
+  },
+  {
+    id: 'coorg-coffee-retreat',
+    title: 'Coorg: Coffee Plantation Retreat',
+    destinationId: 'coorg',
+    duration: '3 Days, 2 Nights',
+    price: 12800,
+    image: 'https://images.unsplash.com/photo-1516738901171-8eb4fc13bd20?q=80&w=800&auto=format&fit=crop',
+    rating: 4.7,
+    difficulty: 'Easy',
+    includes: ['Estate Stay', 'Coffee Cupping', 'Bird Watching', 'Guided Plantation Walk'],
+    category: 'Family',
+    description: 'Wake up to the aroma of freshly roasted coffee beans in the mist-laden hills of Karnataka.'
+  },
+  {
+    id: 'kutch-festival',
+    title: 'Rann Utsav: The White Desert Carnival',
+    destinationId: 'kutch',
+    duration: '4 Days, 3 Nights',
+    price: 28000,
+    image: 'https://images.unsplash.com/photo-1524492707947-2f85a6e5a31a?q=80&w=800&auto=format&fit=crop',
+    rating: 4.9,
+    difficulty: 'Easy',
+    includes: ['Premium Tents', 'Cultural Programs', 'Kutch Handicraft Tour', 'Local Transport'],
+    category: 'Luxury',
+    description: 'Experience the vibrant colors of Gujarat against the stark white backdrop of the Great Rann of Kutch.'
+  },
+  {
+    id: 'himalayan-trekking',
+    title: 'Himalayan Trekking: Hampta Pass',
+    destinationId: 'manali',
+    duration: '6 Days, 5 Nights',
+    price: 14000,
+    image: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=800&auto=format&fit=crop',
+    rating: 4.9,
+    difficulty: 'Challenging',
+    includes: ['Trekking Gear', 'Camping Meals', 'Professional Instructors', 'Medical Kit'],
+    category: 'Adventure',
+    description: 'Cross the dramatic crescent-shaped ridge into a different world of rock and ice.'
+  },
+  {
+    id: 'ooty-garden-tour',
+    title: 'Ooty: Nilgiri Garden Tour',
+    destinationId: 'ooty',
+    duration: '3 Days, 2 Nights',
+    price: 8500,
+    image: 'https://images.unsplash.com/photo-1506461883276-594a12b11cf3?q=80&w=800&auto=format&fit=crop',
+    rating: 4.6,
+    difficulty: 'Easy',
+    includes: ['Comfort Hotel', 'Toy Train Ride', 'Botanical Garden Entry', 'Local Sightseeing'],
+    category: 'Budget',
+    description: 'The quintessential southern hill station experience with rolling hills and colonial architecture.'
+  },
+  {
+    id: 'darjeeling-tea-estate',
+    title: 'Darjeeling: Heritage Tea Estate Stay',
+    destinationId: 'darjeeling',
+    duration: '4 Days, 3 Nights',
+    price: 26000,
+    image: 'https://images.unsplash.com/photo-1544430294-754805826f1c?q=80&w=800&auto=format&fit=crop',
+    rating: 4.9,
+    difficulty: 'Easy',
+    includes: ['Luxury Heritage Stay', 'Tea Plucking Experience', 'Exclusive Breakfast', 'Car with Driver'],
+    category: 'Luxury',
+    description: 'Live in a 150-year-old manager\'s bungalow with panoramic views of the Everest range.'
+  },
+  {
+    id: 'shimla-winter-magic',
+    title: 'Shimla: Winter Snowy Magic',
+    destinationId: 'shimla',
+    duration: '5 Days, 4 Nights',
+    price: 16500,
+    image: 'https://images.unsplash.com/photo-1562670222-0cc62094225d?q=80&w=800&auto=format&fit=crop',
+    rating: 4.8,
+    difficulty: 'Moderate',
+    includes: ['Heated Rooms', 'Ice Skating Entry', 'Kufri Sightseeing', 'Welcome Drinks'],
+    category: 'Family',
+    description: 'Rediscover the charm of the Victorian capital of India under a thick blanket of snow.'
+  },
+  {
+    id: 'gulmarg-ski-adventure',
+    title: 'Gulmarg: Powder Ski Adventure',
+    destinationId: 'gulmarg',
+    duration: '4 Days, 3 Nights',
+    price: 34500,
+    image: 'https://images.unsplash.com/photo-1590740685718-45e3f441460d?q=80&w=800&auto=format&fit=crop',
+    rating: 5.0,
+    difficulty: 'Challenging',
+    includes: ['Skiing Equipment', 'Unlimited Gondola Passes', 'Expert Instructors', 'Spa Session'],
+    category: 'Adventure',
+    description: 'Shred the world-class powder snow of Apharwat Peak in a skier\'s paradise.'
+  },
+  {
+    id: 'ag-fort-heritage',
+    title: 'Agra: Mughal Heritage Immersion',
+    destinationId: 'agra',
+    duration: '3 Days, 2 Nights',
+    price: 9000,
+    image: 'https://images.unsplash.com/photo-1564507592333-c60657eea023?q=80&w=800&auto=format&fit=crop',
+    rating: 4.7,
+    difficulty: 'Easy',
+    includes: ['Heritage Hotel', 'Guide with History Background', 'Photography Tour', 'Handicraft Visit'],
+    category: 'Budget',
+    description: 'Go beyond the Taj and discover the intricate stories hidden within Agra\'s lesser-known monuments.'
   }
 ];
 
