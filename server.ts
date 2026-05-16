@@ -114,6 +114,84 @@ async function startServer() {
     }
   });
 
+  app.post("/api/contact", async (req, res) => {
+    try {
+      const { name, email, subject, message } = req.body;
+
+      console.log("New Contact Request:", { name, email, subject });
+
+      if (resend) {
+        try {
+          await resend.emails.send({
+            from: 'Budget Trips <onboarding@resend.dev>',
+            to: ['budgettrip4u@gmail.com'], // Business email
+            subject: `Contact Form: ${subject}`,
+            html: `
+              <div style="font-family: sans-serif; color: #333;">
+                <h2>New Contact Message</h2>
+                <p><strong>Name:</strong> ${name}</p>
+                <p><strong>Email:</strong> ${email}</p>
+                <p><strong>Subject:</strong> ${subject}</p>
+                <p><strong>Message:</strong></p>
+                <div style="background: #f4f4f4; padding: 15px; border-radius: 8px;">
+                  ${message}
+                </div>
+              </div>
+            `
+          });
+          
+          // Send auto-reply to user
+          await resend.emails.send({
+            from: 'Budget Trips <onboarding@resend.dev>',
+            to: [email],
+            subject: 'We received your message - Budget Trips',
+            html: `<p>Hi ${name},</p><p>Thanks for contacting us! We've received your message and will get back to you shortly.</p>`
+          });
+        } catch (emailError) {
+          console.error("Contact Email Error:", emailError);
+        }
+      }
+
+      res.json({ success: true });
+    } catch (error) {
+      console.error("Contact API Error:", error);
+      res.status(500).json({ error: "Failed to send message" });
+    }
+  });
+
+  app.post("/api/newsletter", async (req, res) => {
+    try {
+      const { email } = req.body;
+
+      console.log("New Newsletter Subscription:", email);
+
+      if (resend) {
+        try {
+          await resend.emails.send({
+            from: 'Budget Trips <onboarding@resend.dev>',
+            to: [email],
+            subject: 'Welcome to the Budget Trips Club!',
+            html: `
+              <div style="font-family: sans-serif; color: #333; max-width: 600px; margin: 0 auto; border: 1px solid #eee; padding: 32px; border-radius: 16px;">
+                <h1 style="color: #059669;">Namaste!</h1>
+                <p>Welcome to our newsletter! You're now on the list to receive the best travel deals, secret itineraries, and mountain inspiration.</p>
+                <p>Stay tuned for our next update!</p>
+                <p style="font-size: 14px; color: #999;">If you didn't sign up for this, you can safely ignore this email.</p>
+              </div>
+            `
+          });
+        } catch (emailError) {
+          console.error("Newsletter Email Error:", emailError);
+        }
+      }
+
+      res.json({ success: true });
+    } catch (error) {
+      console.error("Newsletter API Error:", error);
+      res.status(500).json({ error: "Failed to subscribe" });
+    }
+  });
+
   // Vite middleware for development
   if (process.env.NODE_ENV !== "production") {
     const vite = await createViteServer({

@@ -1,11 +1,12 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Mountain, Compass, Map, ShieldCheck, ChevronRight, Image as ImageIcon } from 'lucide-react';
+import { Mountain, Compass, Map, ShieldCheck, Smartphone, ChevronRight, Image as ImageIcon } from 'lucide-react';
 import { SectionHeader } from '../components/SectionHeader';
 import { TourCard } from '../components/TourCard';
 import { TOUR_PACKAGES, DESTINATIONS, TESTIMONIALS } from '../constants';
 import { motion } from 'motion/react';
 import { cn } from '../lib/utils';
+import { QRCodeSVG } from 'qrcode.react';
 
 export default function Home() {
   return (
@@ -255,6 +256,86 @@ export default function Home() {
               <NavLink to="/contact" className="border-2 border-white/40 text-white px-10 py-5 rounded-full text-lg font-bold hover:bg-white/10 transition-all">
                 Talk to an Expert
               </NavLink>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Scan & Pay Section */}
+      <section className="py-24 bg-gray-50 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-white rounded-[3rem] shadow-2xl border border-gray-100 overflow-hidden flex flex-col lg:flex-row items-center">
+            <div className="p-12 md:p-20 lg:w-1/2 space-y-8">
+              <div className="h-1 w-20 bg-emerald-600 rounded-full"></div>
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight leading-tight">
+                Scan & <span className="text-emerald-600 italic">Pay</span> Anywhere
+              </h2>
+              <p className="text-lg text-gray-600 leading-relaxed max-w-lg">
+                Quick, secure, and hassle-free payments through any UPI app. Simply scan the QR code to proceed with your booking or payment.
+              </p>
+              
+              <div className="space-y-4">
+                <p className="text-sm font-bold text-gray-400 uppercase tracking-widest">Pay via Your Favorite App</p>
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                  <a href="paytm://upi/pay?pa=8295987874@ptyes&pn=Budget%20Trips&cu=INR" className="flex flex-col items-center gap-2 p-4 bg-white rounded-2xl hover:bg-emerald-50 transition-all border border-gray-100 shadow-sm group">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/2/24/Paytm_Logo_%28standalone%29.png" alt="Paytm" className="h-5 object-contain group-hover:scale-110 transition-transform" />
+                    <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Paytm</span>
+                  </a>
+                  <a href="googlepay://upi/pay?pa=8295987874@ptyes&pn=Budget%20Trips&cu=INR" className="flex flex-col items-center gap-2 p-4 bg-white rounded-2xl hover:bg-emerald-50 transition-all border border-gray-100 shadow-sm group">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/f/f2/Google_Pay_Logo.svg" alt="GPay" className="h-5 object-contain group-hover:scale-110 transition-transform" />
+                    <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">G-Pay</span>
+                  </a>
+                  <a href="phonepe://upi/pay?pa=8295987874@ptyes&pn=Budget%20Trips&cu=INR" className="flex flex-col items-center gap-2 p-4 bg-white rounded-2xl hover:bg-emerald-50 transition-all border border-gray-100 shadow-sm group">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/71/PhonePe_Logo.svg" alt="PhonePe" className="h-6 object-contain group-hover:scale-110 transition-transform" />
+                    <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">PhonePe</span>
+                  </a>
+                  <a href="upi://pay?pa=8295987874@ptyes&pn=Budget%20Trips&cu=INR" className="flex flex-col items-center gap-2 p-4 bg-white rounded-2xl hover:bg-emerald-50 transition-all border border-gray-100 shadow-sm group">
+                    <Smartphone className="h-5 w-5 text-emerald-600 group-hover:scale-110 transition-transform" />
+                    <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">BHIM / Other</span>
+                  </a>
+                </div>
+              </div>
+
+              <div className="pt-6">
+                <div className="inline-flex items-center gap-3 px-6 py-4 bg-emerald-50 text-emerald-700 rounded-2xl border border-emerald-100 font-bold">
+                  <ShieldCheck className="h-5 w-5" />
+                  Encrypted UPI Transaction
+                </div>
+              </div>
+            </div>
+
+            <div className="lg:w-1/2 bg-gray-900 p-12 md:p-20 flex flex-center justify-center relative">
+              <div className="absolute top-0 right-0 p-8">
+                <Mountain className="h-12 w-12 text-white/10" />
+              </div>
+              
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                className="bg-white p-8 rounded-[2.5rem] shadow-2xl relative z-10 text-center space-y-6 max-w-sm w-full"
+              >
+                <div className="bg-gray-50 p-6 rounded-2xl flex items-center justify-center">
+                  <QRCodeSVG 
+                    value="upi://pay?pa=8295987874@ptyes&pn=Budget%20Trips&tn=Booking%20Payment&cu=INR" 
+                    size={250}
+                    level="H"
+                    includeMargin={false}
+                  />
+                </div>
+                <div>
+                  <p className="text-gray-400 text-xs font-bold uppercase tracking-widest mb-1">Our UPI ID</p>
+                  <p className="text-xl font-mono text-gray-900 font-bold bg-gray-50 py-2 px-4 rounded-xl inline-block">8295987874@ptyes</p>
+                </div>
+                <div className="flex items-center justify-center gap-2 text-emerald-600 font-bold text-sm">
+                  <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
+                  Scan to Pay Securely
+                </div>
+              </motion.div>
+
+              {/* Decorative elements */}
+              <div className="absolute bottom-10 left-10 w-32 h-32 bg-emerald-600/10 rounded-full blur-3xl"></div>
+              <div className="absolute top-20 right-20 w-48 h-48 bg-emerald-500/5 rounded-full blur-3xl"></div>
             </div>
           </div>
         </div>

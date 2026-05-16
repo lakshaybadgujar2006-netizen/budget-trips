@@ -1,11 +1,71 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { Mountain, Facebook, Twitter, Instagram, Mail, Phone, MapPin, MessageCircle } from 'lucide-react';
+import { Mountain, Facebook, Twitter, Instagram, Mail, Phone, MapPin, MessageCircle, Send, Loader2, CheckCircle2 } from 'lucide-react';
 
 export function Footer() {
+  const [email, setEmail] = useState('');
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+
+  const handleSubscribe = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus('loading');
+
+    try {
+      const response = await fetch('/api/newsletter', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
+
+      if (response.ok) {
+        setStatus('success');
+        setEmail('');
+      } else {
+        setStatus('error');
+      }
+    } catch (err) {
+      setStatus('error');
+    }
+  };
+
   return (
     <footer className="bg-gray-950 text-gray-300 pt-20 pb-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Newsletter Section */}
+        <div className="bg-emerald-900/40 rounded-[3rem] p-10 md:p-16 mb-20 border border-emerald-800/50 backdrop-blur-sm">
+          <div className="max-w-3xl mx-auto text-center space-y-6">
+            <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight">Stay Inspired</h2>
+            <p className="text-emerald-100/70 text-lg">Join 10,000+ travelers and get the best deals, hidden gems, and travel tips delivered to your inbox.</p>
+            
+            {status === 'success' ? (
+              <div className="flex items-center justify-center gap-3 text-emerald-400 font-bold text-xl animate-in fade-in zoom-in duration-500">
+                <CheckCircle2 className="h-8 w-8" />
+                You're on the list!
+              </div>
+            ) : (
+              <form onSubmit={handleSubscribe} className="relative max-w-xl mx-auto mt-8">
+                <input
+                  required
+                  type="email"
+                  placeholder="Enter your email"
+                  className="w-full bg-gray-900/50 border border-emerald-800/30 text-white px-8 py-5 rounded-3xl focus:outline-none focus:ring-2 focus:ring-emerald-500 transition-all pl-14"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+                <Mail className="absolute left-6 top-1/2 -translate-y-1/2 h-5 w-5 text-emerald-500" />
+                <button
+                  disabled={status === 'loading'}
+                  className="absolute right-2 top-2 bottom-2 bg-emerald-600 hover:bg-emerald-700 text-white px-8 rounded-2xl font-bold transition-all flex items-center gap-2 disabled:opacity-50"
+                >
+                  {status === 'loading' ? <Loader2 className="h-5 w-5 animate-spin" /> : <Send className="h-4 w-4" />}
+                  Subscribe
+                </button>
+              </form>
+            )}
+            {status === 'error' && <p className="text-red-400 text-sm font-bold">Something went wrong. Please try again.</p>}
+          </div>
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           {/* Brand */}
           <div className="space-y-6">

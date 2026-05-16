@@ -1,8 +1,66 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { SectionHeader } from '../components/SectionHeader';
-import { Mail, Phone, MapPin, Send, Instagram, MessageCircle } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, Instagram, MessageCircle, Loader2, CheckCircle2 } from 'lucide-react';
 
 export default function Contact() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setError(null);
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setIsSubmitted(true);
+      } else {
+        throw new Error('Failed to send message');
+      }
+    } catch (err) {
+      setError('Something went wrong. Please try again later.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  if (isSubmitted) {
+    return (
+      <div className="py-24 text-center">
+        <div className="max-w-3xl mx-auto px-4">
+          <div className="w-20 h-20 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-8 animate-bounce">
+            <CheckCircle2 className="h-10 w-10" />
+          </div>
+          <h2 className="text-4xl font-bold mb-4">Message Sent!</h2>
+          <p className="text-lg text-gray-600 mb-10">
+            Thank you for reaching out. Our team has received your message and will get back to you within 24 hours.
+          </p>
+          <button 
+            onClick={() => setIsSubmitted(false)}
+            className="text-emerald-600 font-bold hover:underline"
+          >
+            Send another message
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -57,15 +115,53 @@ export default function Contact() {
            </div>
 
            <div className="lg:col-span-2 bg-white rounded-[2.5rem] shadow-2xl border border-gray-50 p-8 md:p-12">
-              <form className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-6">
                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                    <input type="text" placeholder="Your Name" className="w-full px-6 py-4 bg-gray-50 rounded-2xl border border-gray-100 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition-all font-medium" />
-                    <input type="email" placeholder="Your Email" className="w-full px-6 py-4 bg-gray-50 rounded-2xl border border-gray-100 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition-all font-medium" />
+                    <input 
+                      required
+                      type="text" 
+                      placeholder="Your Name" 
+                      className="w-full px-6 py-4 bg-gray-50 rounded-2xl border border-gray-100 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition-all font-medium" 
+                      value={formData.name}
+                      onChange={e => setFormData({ ...formData, name: e.target.value })}
+                    />
+                    <input 
+                      required
+                      type="email" 
+                      placeholder="Your Email" 
+                      className="w-full px-6 py-4 bg-gray-50 rounded-2xl border border-gray-100 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition-all font-medium" 
+                      value={formData.email}
+                      onChange={e => setFormData({ ...formData, email: e.target.value })}
+                    />
                  </div>
-                 <input type="text" placeholder="Subject" className="w-full px-6 py-4 bg-gray-50 rounded-2xl border border-gray-100 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition-all font-medium" />
-                 <textarea rows={6} placeholder="How can we help?" className="w-full px-6 py-4 bg-gray-50 rounded-2xl border border-gray-100 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition-all font-medium"></textarea>
-                 <button className="bg-emerald-600 text-white px-10 py-5 rounded-2xl font-bold flex items-center gap-3 hover:bg-emerald-700 transition-all shadow-xl shadow-emerald-900/10">
-                    Send Message <Send className="h-5 w-5" />
+                 <input 
+                   required
+                   type="text" 
+                   placeholder="Subject" 
+                   className="w-full px-6 py-4 bg-gray-50 rounded-2xl border border-gray-100 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition-all font-medium" 
+                   value={formData.subject}
+                   onChange={e => setFormData({ ...formData, subject: e.target.value })}
+                 />
+                 <textarea 
+                   required
+                   rows={6} 
+                   placeholder="How can we help?" 
+                   className="w-full px-6 py-4 bg-gray-50 rounded-2xl border border-gray-100 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition-all font-medium"
+                   value={formData.message}
+                   onChange={e => setFormData({ ...formData, message: e.target.value })}
+                 ></textarea>
+                 
+                 {error && <p className="text-red-500 text-sm font-bold">{error}</p>}
+
+                 <button 
+                   disabled={isSubmitting}
+                   className="bg-emerald-600 text-white px-10 py-5 rounded-2xl font-bold flex items-center gap-3 hover:bg-emerald-700 transition-all shadow-xl shadow-emerald-900/10 disabled:opacity-70 disabled:cursor-not-allowed"
+                 >
+                    {isSubmitting ? (
+                      <>Processing... <Loader2 className="h-5 w-5 animate-spin" /></>
+                    ) : (
+                      <>Send Message <Send className="h-5 w-5" /></>
+                    )}
                  </button>
               </form>
            </div>

@@ -11,7 +11,6 @@ import {
   XCircle, 
   Clock,
   TrendingUp,
-  DollarSign,
   Search,
   LayoutDashboard,
   Settings
@@ -76,7 +75,7 @@ export default function AdminDashboard() {
   const stats = [
     { label: 'Total Bookings', value: bookings.length, icon: Calendar, color: 'emerald' },
     { label: 'Active Customers', value: [...new Set(bookings.map(b => b.userId))].length, icon: Users, color: 'blue' },
-    { label: 'Revenue (Est.)', value: `$${bookings.length * 850}`, icon: DollarSign, color: 'purple' },
+    { label: 'Trip Requests', value: bookings.length, icon: Package, color: 'purple' },
     { label: 'Pending Requests', value: bookings.filter(b => b.status === 'pending').length, icon: Clock, color: 'orange' },
   ];
 
